@@ -22,31 +22,28 @@ public class PumpkinController {
 		return pumpkinRepo.findAll();
 	}
 	
-	// add a pumpkin
-	@PostMapping("/")
-	public Pumpkin addPumpkin(Pumpkin p) {
-		if (pumpkinRepo.save(p)!=null) {
-			System.out.println("Pumpkin save was successful");
-		}
-		else {
-			System.out.println("Pumpkin save ISSUE.");
-		}
-		return p;
-		
+	// get pumpkin by id
+	@GetMapping("/{id}")
+	public Pumpkin getPumpkin(@PathVariable int id) {
+		return pumpkinRepo.getOne(id);
 	}
 	
+	// add a pumpkin
+	@PostMapping("/")
+	public Pumpkin addPumpkin(@RequestBody Pumpkin p) {
+		return pumpkinRepo.save(p);
+	}
 	
+	// update a pumpkin
+	@PutMapping("/")
+	public Pumpkin updatePumpkin(@RequestBody Pumpkin p) {
+		return pumpkinRepo.save(p);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// delete a pumpkin
+	@DeleteMapping("/")
+	public void deletePumpkin(@RequestBody Pumpkin p) {
+		pumpkinRepo.delete(p);
+	}
 	
 }
