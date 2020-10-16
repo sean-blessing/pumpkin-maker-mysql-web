@@ -1,6 +1,7 @@
 package com.pumpkin.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,9 @@ public class PumpkinController {
 	
 	// get pumpkin by id
 	@GetMapping("/{id}")
-	public Pumpkin getPumpkin(@PathVariable int id) {
-		return pumpkinRepo.getOne(id);
+	public Optional getPumpkin(@PathVariable int id) {
+		Optional<Pumpkin> p = pumpkinRepo.findById(id);
+		return p;
 	}
 	
 	// add a pumpkin
